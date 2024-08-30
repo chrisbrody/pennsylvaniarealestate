@@ -74,35 +74,12 @@
 
         <div id="footer"></div>
 
-
         <script src="./js/jquery-3.4.1.min.js"></script>
         <script src="./js/header.js"></script>
         <script src="./js/footer.js"></script>
         <script src="./js/scripts.js"></script>
 
         <script>
-            // validate form fields
-            function validateFormField(fieldId, errorMessage, maxLength, defaultLabel) {
-                var fieldEl = $('#' + fieldId);
-                var fieldValue = fieldEl.val();
-                var labelEl = fieldEl.siblings('label');
-
-                if (!fieldValue) {
-                    fieldEl.css('border', '1px solid red');
-                    labelEl.css('color', 'red').text(errorMessage);
-                    return false;
-                } else if (maxLength && fieldValue.length > maxLength) {
-                    fieldEl.css('border', '1px solid red');
-                    labelEl.css('color', 'red').text(errorMessage);
-                    return false;
-                } else {
-                    fieldEl.css('border', '1px solid lightgrey');
-                    labelEl.css('color', 'black').text(defaultLabel);
-                    return true;
-                }
-            }
-
-            // exmple usage
             // Apply validation on blur and input events
             $('#first-name').on('blur input', function() {
                 validateFormField('first-name', 'First Name is required', 255, 'First Name*');
@@ -115,20 +92,7 @@
             $('#email').on('blur input', function() {
                 validateFormField('email', 'Email is required', 255, 'Email*');
             });
-
-            var isValidForm = false;
-
-            // Validate all fields on form submit
-            $('#contact').on('submit', function(e) {
-                e.preventDefault();
-
-                // validate the form
-                isValidFirstName = validateFormField('first-name', 'First Name is required', 255, 'First Name*');
-                isValidLastName = validateFormField('lastname', 'Last Name is required', 255, 'Last Name*');
-                isValidEmail = validateFormField('email', 'Email is required', 255, 'Email*');
-
-                isValidForm = isValidFirstName && isValidLastName && isValidEmail;
-            });
         </script>
+
     </body>
 </html>
