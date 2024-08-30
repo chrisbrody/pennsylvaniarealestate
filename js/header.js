@@ -6,13 +6,22 @@ function adjustPath(path) {
     return isArticlesPage ? path.replace('./', '../') : path;
 }
 $(document).ready(function() {
+    function getLogoSrc() {
+        const windowWidth = $(window).width();
+        if (windowWidth <= 1024 && windowWidth >= 501) {
+            return adjustPath('./images/logosmall.png');
+        } else {
+            return adjustPath('./images/logo.png');
+        }
+    }
+
     const header = $('<header>').append(
         $('<a>').attr({
             href: 'https://PennsylvaniaRealEstate.com',
             class: 'logo'
         }).append(
             $('<img>').attr({
-                src: adjustPath('./images/logo.png'),
+                src: getLogoSrc(),
                 alt: 'Pennsylvania Real Estate'
             })
         ),
