@@ -7,11 +7,18 @@ $(document).ready(function(){
 
     $('form').on('submit', function(e){
 
+        console.log(isValidForm)
+        // confirm the form is valid for submittion
+        if (!isValidForm) {
+            console.log('form is in valid', isValidForm)
+        }
+
         e.stopPropagation();
-        e.preventDefault();
+        // e.preventDefault();
         e.stopImmediatePropagation();
 
         var form = 'page=' + window.location.href + "&" + $('form').serialize() + "&locations=" + locations;
+        console.log(form)
 
         $.ajax({
             type: 'POST',

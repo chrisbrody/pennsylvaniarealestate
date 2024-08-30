@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <title>Contact Us - Amo Realty Pennsylvania</title>
+
+        <meta name="description" content="Find the best properties in Pennsylvania.">
+        <meta name="keywords" content="Pennsylvania real estate, buy, sell, rent, homes, condos, apartments">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway&display=swap" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+
+    </head>
+    <body>
+
+        <div id="header"></div>
+
+        <main class="sub">
+
+            <div class="wrap">
+
+                <h2 class="fade-out">Contact Us</h2>
+
+                <p class="status">Pennsylvania Real Estate is open 7 days a week between 8am and 11pm. Please email us with any questions and we usually respond within less than 1 hour! If you email us after offices hours, we will get back to you asap the following day! Also, call us at <a href="tel:6172471933">(617) 247-1933</a> with any questions and we look forward to meeting you soon!</p>
+
+            </div>
+
+            <form id="contact" class="fade-out">
+
+                <input type="hidden" name="source" value="contact" />
+
+                <fieldset>
+
+                    <div class="row">
+
+                        <div>
+                            <label for="first-name">First Name <span>*</span></label>
+                            <input type="text" id="first-name" name="first-name" class="req" />
+                        </div><!--
+
+                             --><div>
+                        <label for="lastname">Last Name <span>*</span></label>
+                        <input type="text" id="lastname" name="last-name" class="req" />
+                    </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div>
+                            <label for="email">Email <span>*</span></label>
+                            <input type="text" id="email" name="email" class="req" />
+                        </div><!--
+
+                            --><div>
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="phone" />
+                    </div>
+
+                    </div>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message"></textarea>
+
+                </fieldset>
+
+                <button type="submit">send</button>
+
+            </form>
+
+        </main>
+
+        <div id="footer"></div>
+
+
+        <script src="./js/jquery-3.4.1.min.js"></script>
+        <script src="./js/header.js"></script>
+        <script src="./js/footer.js"></script>
+        <script src="./js/scripts.js"></script>
+
+        <script>
+            // validate form fields
+            function validateFormField(fieldId, errorMessage, maxLength, defaultLabel) {
+                var fieldEl = $('#' + fieldId);
+                var fieldValue = fieldEl.val();
+                var labelEl = fieldEl.siblings('label');
+
+                if (!fieldValue) {
+                    fieldEl.css('border', '1px solid red');
+                    labelEl.css('color', 'red').text(errorMessage);
+                    return false;
+                } else if (maxLength && fieldValue.length > maxLength) {
+                    fieldEl.css('border', '1px solid red');
+                    labelEl.css('color', 'red').text(errorMessage);
+                    return false;
+                } else {
+                    fieldEl.css('border', '1px solid lightgrey');
+                    labelEl.css('color', 'black').text(defaultLabel);
+                    return true;
+                }
+            }
+
+            // exmple usage
+            // Apply validation on blur and input events
+            $('#first-name').on('blur input', function() {
+                validateFormField('first-name', 'First Name is required', 255, 'First Name*');
+            });
+
+            $('#lastname').on('blur input', function() {
+                validateFormField('lastname', 'Last Name is required', 255, 'Last Name*');
+            });
+
+            $('#email').on('blur input', function() {
+                validateFormField('email', 'Email is required', 255, 'Email*');
+            });
+
+            var isValidForm = false;
+
+            // Validate all fields on form submit
+            $('#contact').on('submit', function(e) {
+                e.preventDefault();
+
+                // validate the form
+                isValidFirstName = validateFormField('first-name', 'First Name is required', 255, 'First Name*');
+                isValidLastName = validateFormField('lastname', 'Last Name is required', 255, 'Last Name*');
+                isValidEmail = validateFormField('email', 'Email is required', 255, 'Email*');
+
+                isValidForm = isValidFirstName && isValidLastName && isValidEmail;
+            });
+        </script>
+    </body>
+</html>
