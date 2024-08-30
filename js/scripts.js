@@ -1,18 +1,55 @@
+// validate form fields
+function validateFormField(fieldId, errorMessage, maxLength, defaultLabel) {
+    var fieldEl = $('#' + fieldId);
+    var fieldValue = fieldEl.val();
+    var labelEl = fieldEl.siblings('label');
+
+    if (!fieldValue) {
+        fieldEl.css('border', '1px solid red');
+        labelEl.css('color', 'red').text(errorMessage);
+        return false;
+    } else if (maxLength && fieldValue.length > maxLength) {
+        fieldEl.css('border', '1px solid red');
+        labelEl.css('color', 'red').text(errorMessage);
+        return false;
+    } else {
+        fieldEl.css('border', '1px solid lightgrey');
+        labelEl.css('color', 'black').text(defaultLabel);
+        return true;
+    }
+}
+
 let locations = [];
 
 $(document).ready(function(){
 
     $('form').on('submit', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        e.stopImmediatePropagation();
 
-        console.log(isValidForm)
+        let isValidForm = false;
+
+        let isSearchPage = window.location.pathname.includes('search');
+        let isContactPage = window.location.pathname.includes('contact');
+
+        if(isContactPage) {
+            isValidFirstName = validateFormField('first-name', 'First Name is required', 255, 'First Name*');
+            isValidLastName = validateFormField('lastname', 'Last Name is required', 255, 'Last Name*');
+            isValidEmail = validateFormField('email', 'Email is required', 255, 'Email*');
+
+            isValidForm = isValidFirstName && isValidLastName && isValidEmail;
+        }
+
+        if(isSearchPage) {
+            // TODO: validate form fields based on URL type attr
+        }
+
         // confirm the form is valid for submittion
         if (!isValidForm) {
             console.log('form is in valid', isValidForm)
+            return;
         }
-
-        e.stopPropagation();
-        // e.preventDefault();
-        e.stopImmediatePropagation();
 
         var form = 'page=' + window.location.href + "&" + $('form').serialize() + "&locations=" + locations;
         console.log(form)
