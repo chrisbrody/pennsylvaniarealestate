@@ -6,7 +6,7 @@ $(document).ready(function() {
                 class: 'home logo'
             }).append(
                 $('<img>').attr({
-                    src: adjustImagePath('./images/logo-reverse.png'),
+                    src: adjustPath('./images/logo-reverse.png'),
                     alt: 'Pennsylvania Real Estate'
                 })
             ),
@@ -26,7 +26,7 @@ $(document).ready(function() {
             ),
             $('<p>').addClass('languages').text('Languages we speak:'),
             $('<img>').attr({
-                src: adjustImagePath('./images/flags.png'),
+                src: adjustPath('./images/flags.png'),
                 alt: 'International Flags'
             }).addClass('flags')
         ),
@@ -39,11 +39,11 @@ $(document).ready(function() {
                     $('<a>').attr('href', './search?type=rentals').text('Rentals')
                 ),
                 $('<li>').append(
-                    $('<a>').attr('href', './contact').text('Contact')
+                    $('<a>').attr('href', adjustPath('./contact.html')).text('Contact')
                 )
             ),
             $('<img>').attr({
-                src: adjustImagePath('./images/equal-housing-opportunity-logo-reverse.png'),
+                src: adjustPath('./images/equal-housing-opportunity-logo-reverse.png'),
                 alt: 'Equal Housing Opportunity',
                 style: 'height:100px; width: auto;float:right; top:75px'
             }).addClass('eho'),

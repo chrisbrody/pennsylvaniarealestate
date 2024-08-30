@@ -2,8 +2,8 @@
 // Check if "articles" is in the URL
 const isArticlesPage = window.location.pathname.includes('articles');
 // Function to adjust image paths - if no an article page it needs to be ../images
-function adjustImagePath(imagePath) {
-    return isArticlesPage ? imagePath.replace('./images/', '../images/') : imagePath;
+function adjustPath(path) {
+    return isArticlesPage ? path.replace('./', '../') : path;
 }
 $(document).ready(function() {
     const header = $('<header>').append(
@@ -12,7 +12,7 @@ $(document).ready(function() {
             class: 'logo'
         }).append(
             $('<img>').attr({
-                src: adjustImagePath('./images/logo.png'),
+                src: adjustPath('./images/logo.png'),
                 alt: 'Pennsylvania Real Estate'
             })
         ),
@@ -25,7 +25,7 @@ $(document).ready(function() {
             $('<li>').append(
                 $('<a>').attr('href', 'https://www.facebook.com/amorealty').append(
                     $('<img>').attr({
-                        src: adjustImagePath('./images/facebook.png'),
+                        src: adjustPath('./images/facebook.png'),
                         alt: 'facebook icon'
                     })
                 )
@@ -33,7 +33,7 @@ $(document).ready(function() {
             $('<li>').append(
                 $('<a>').attr('href', 'https://www.linkedin.com/company/amo-realty/').append(
                     $('<img>').attr({
-                        src: adjustImagePath('./images/linkedin.png'),
+                        src: adjustPath('./images/linkedin.png'),
                         alt: 'linkedin icon'
                     })
                 )
@@ -41,7 +41,7 @@ $(document).ready(function() {
             $('<li>').append(
                 $('<a>').attr('href', 'https://www.instagram.com/amorealty/').append(
                     $('<img>').attr({
-                        src: adjustImagePath('./images/instagram.png'),
+                        src: adjustPath('./images/instagram.png'),
                         alt: 'instagram icon'
                     })
                 )
