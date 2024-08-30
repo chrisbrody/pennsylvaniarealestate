@@ -33,16 +33,18 @@ $(document).ready(function(){
         let isSearchPage = window.location.pathname.includes('search');
         let isContactPage = window.location.pathname.includes('contact');
 
-        if(isContactPage) {
-            isValidFirstName = validateFormField('first-name', 'First Name is required', 255, 'First Name*');
-            isValidLastName = validateFormField('lastname', 'Last Name is required', 255, 'Last Name*');
-            isValidEmail = validateFormField('email', 'Email is required', 255, 'Email*');
+        isValidFirstName = validateFormField('first-name', 'First Name is required', 255, 'First Name*');
+        isValidLastName = validateFormField('last-name', 'Last Name is required', 255, 'Last Name*');
+        isValidEmail = validateFormField('email', 'Email is required', 255, 'Email*');
 
+        if(isContactPage) {
             isValidForm = isValidFirstName && isValidLastName && isValidEmail;
         }
 
         if(isSearchPage) {
             // TODO: validate form fields based on URL type attr
+            isValidPhone = validateFormField('phone', 'Phone is required', 15, 'EmailPhone*');
+            isValidForm = isValidFirstName && isValidLastName && isValidEmail && isValidPhone;
         }
 
         // confirm the form is valid for submittion
