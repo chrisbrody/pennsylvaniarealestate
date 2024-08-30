@@ -19,7 +19,7 @@ $(document).ready(function() {
         $('<nav>').append(
             $('<a>').attr('href', './search?type=sales').text('Sales'),
             $('<a>').attr('href', './search?type=rentals').text('Rentals'),
-            $('<a>').attr('href', './contact').text('Contact')
+            $('<a>').attr('href', adjustPath('./contact.html')).text('Contact')
         ),
         $('<ul>').addClass('social-icons').append(
             $('<li>').append(
