@@ -30,6 +30,7 @@ $(document).ready(function(){
 
         let isValidForm = false;
 
+        let isListPage = window.location.pathname.includes('list');
         let isSearchPage = window.location.pathname.includes('search');
         let isContactPage = window.location.pathname.includes('contact');
 
@@ -37,14 +38,20 @@ $(document).ready(function(){
         isValidLastName = validateFormField('last-name', 'Last Name is required', 255, 'Last Name*');
         isValidEmail = validateFormField('email', 'Email is required', 255, 'Email*');
 
-        if(isContactPage) {
-            isValidForm = isValidFirstName && isValidLastName && isValidEmail;
+        if(isListPage) {
+            console.log('list page')
+            isValidLandlordName = validateFormField('landlordname', 'Name is required', 255, 'Name*');
+            isValidPhone = validateFormField('phone', 'Phone is required', 15, 'Phone*');
+            isValidForm = isValidLandlordName && isValidEmail && isValidPhone;
         }
 
         if(isSearchPage) {
-            // TODO: validate form fields based on URL type attr
-            isValidPhone = validateFormField('phone', 'Phone is required', 15, 'EmailPhone*');
+            isValidPhone = validateFormField('phone', 'Phone is required', 15, 'Phone*');
             isValidForm = isValidFirstName && isValidLastName && isValidEmail && isValidPhone;
+        }
+
+        if(isContactPage) {
+            isValidForm = isValidFirstName && isValidLastName && isValidEmail;
         }
 
         // confirm the form is valid for submittion
@@ -53,13 +60,31 @@ $(document).ready(function(){
             return;
         }
 
-        var form = 'page=' + window.location.href + "&" + $('form').serialize() + "&locations=" + locations;
-        console.log(form)
+        let locationsParam = locations.length > 0 ? locations.join(',') : '';
+
+        let formData = $('form').serialize(); // Serialize form data
+        // Construct the URL
+        let params = $.param({
+            type: new URLSearchParams(window.location.search).get('type'),
+            source: $('input[name="source"]').val(), // or another value
+            ...$('form').serializeArray().reduce((obj, item) => {
+                obj[item.name] = item.value;
+                return obj;
+            }, {})
+        });
+
+        // Append locations parameter if it's not empty
+        if (locationsParam) {
+            params += `&locations=${encodeURIComponent(locationsParam)}`;
+        }
+
+        // console.log(`${pageUrl}?${params}`)
+        console.log(formData)
 
         $.ajax({
             type: 'POST',
             url: 'inc/brain.php',
-            data: form,
+            data: formData,
             dataType: 'text',
             success: function(result){
 
