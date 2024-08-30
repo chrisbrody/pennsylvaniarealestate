@@ -33,10 +33,10 @@ $(document).ready(function() {
         $('<div>').append(
             $('<ul>').append(
                 $('<li>').append(
-                    $('<a>').attr('href', './search?type=sales').text('Sales')
+                    $('<a>').attr('href', adjustPath('./search.html?type=sales')).text('Sales')
                 ),
                 $('<li>').append(
-                    $('<a>').attr('href', './search?type=rentals').text('Rentals')
+                    $('<a>').attr('href', adjustPath('./search.html?type=rentals')).text('Rentals')
                 ),
                 $('<li>').append(
                     $('<a>').attr('href', adjustPath('./contact.html')).text('Contact')
