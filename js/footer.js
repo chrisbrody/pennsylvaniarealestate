@@ -15,11 +15,6 @@ $(document).ready(function() {
                 class: 'phone'
             }).text('(617) 247-1933'),
             $('<span>').addClass('address').append(
-                $('<strong>').css({
-                    display: 'block',
-                    paddingBottom: '5px'
-                }).text('Pennsylvania Corporate Headquarters'),
-                $('<br>'),
                 '2001 Market St. Suite 2500',
                 $('<br>'),
                 'Philadelphia, PA 19103'
