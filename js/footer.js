@@ -6,8 +6,8 @@ $(document).ready(function() {
                 class: 'home logo'
             }).append(
                 $('<img>').attr({
-                    src: './images/logo-reverse.png',
-                    alt: 'San Francisco Apartments'
+                    src: adjustImagePath('./images/logo-reverse.png'),
+                    alt: 'Pennsylvania Real Estate'
                 })
             ),
             $('<a>').attr({
@@ -26,7 +26,7 @@ $(document).ready(function() {
             ),
             $('<p>').addClass('languages').text('Languages we speak:'),
             $('<img>').attr({
-                src: './images/flags.png',
+                src: adjustImagePath('./images/flags.png'),
                 alt: 'International Flags'
             }).addClass('flags')
         ),
@@ -43,7 +43,7 @@ $(document).ready(function() {
                 )
             ),
             $('<img>').attr({
-                src: './images/equal-housing-opportunity-logo-reverse.png',
+                src: adjustImagePath('./images/equal-housing-opportunity-logo-reverse.png'),
                 alt: 'Equal Housing Opportunity',
                 style: 'height:100px; width: auto;float:right; top:75px'
             }).addClass('eho'),

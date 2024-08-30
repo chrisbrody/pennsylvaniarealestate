@@ -1,3 +1,10 @@
+
+// Check if "articles" is in the URL
+const isArticlesPage = window.location.pathname.includes('articles');
+// Function to adjust image paths - if no an article page it needs to be ../images
+function adjustImagePath(imagePath) {
+    return isArticlesPage ? imagePath.replace('./images/', '../images/') : imagePath;
+}
 $(document).ready(function() {
     const header = $('<header>').append(
         $('<a>').attr({
@@ -5,7 +12,7 @@ $(document).ready(function() {
             class: 'logo'
         }).append(
             $('<img>').attr({
-                src: './images/logo.png',
+                src: adjustImagePath('./images/logo.png'),
                 alt: 'Pennsylvania Real Estate'
             })
         ),
@@ -18,7 +25,7 @@ $(document).ready(function() {
             $('<li>').append(
                 $('<a>').attr('href', 'https://www.facebook.com/amorealty').append(
                     $('<img>').attr({
-                        src: './images/facebook.png',
+                        src: adjustImagePath('./images/facebook.png'),
                         alt: 'facebook icon'
                     })
                 )
@@ -26,7 +33,7 @@ $(document).ready(function() {
             $('<li>').append(
                 $('<a>').attr('href', 'https://www.linkedin.com/company/amo-realty/').append(
                     $('<img>').attr({
-                        src: './images/linkedin.png',
+                        src: adjustImagePath('./images/linkedin.png'),
                         alt: 'linkedin icon'
                     })
                 )
@@ -34,7 +41,7 @@ $(document).ready(function() {
             $('<li>').append(
                 $('<a>').attr('href', 'https://www.instagram.com/amorealty/').append(
                     $('<img>').attr({
-                        src: './images/instagram.png',
+                        src: adjustImagePath('./images/instagram.png'),
                         alt: 'instagram icon'
                     })
                 )
