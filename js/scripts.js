@@ -1,6 +1,3 @@
-console.log('script.js page');
-console.log($);
-
 let locations = [];
 
 $(document).ready(function(){
@@ -957,6 +954,7 @@ $(document).ready(function(){
 
     if (searchForm) {
 
+        // handles adding icons to locations selected
         var instance = new SelectPure(".locations", {
             options: myOptions,
             multiple: true,
